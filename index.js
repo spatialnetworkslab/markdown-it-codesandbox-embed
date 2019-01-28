@@ -10,7 +10,7 @@ function getSandboxURL(directory, pathName) {
   const pathNameParts = pathName.split('?')
   const cwd = process.cwd()
   const directoryPath = path.join(cwd, directory, pathNameParts[0])
-  const absolutePath = path.join(directoryPath, '**')
+  const absolutePath = path.join(directoryPath, '**/!(node_modules)') //ignore node_modules
   const fileNames = glob.sync(absolutePath, { nodir: true })
   const files = {}
   for (let i = 0, fileName; fileName = fileNames[i]; i++) {
